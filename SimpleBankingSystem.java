@@ -30,13 +30,14 @@ public class SimpleBankingSystem {
         long accountNumberCounter = 0;
         String response;
 
-        do {
+       do {
             System.out.print("Enter your name: ");
             String name = scanner.nextLine();
 
             System.out.print("Enter your age: ");
             int age = scanner.nextInt();
-            scanner.nextLine();
+            scanner.nextLine(); 
+
             System.out.print("Enter your contact details: ");
             String contactDetails = scanner.nextLine();
 
@@ -46,23 +47,22 @@ public class SimpleBankingSystem {
             System.out.print("Enter your residence address: ");
             String residenceAddress = scanner.nextLine();
 
-            //Create a new customer
-            Customer customer = new Customer(name, age, contactDetails, emailAddress, residenceAddress, String.valueOf(accountNumberCounter++));
+            String accountNumber = String.format("%014d", accountNumberCounter++);
+            Customer customer = new Customer(name, age, contactDetails, emailAddress, residenceAddress, accountNumber);
 
-            System.out.println("Customer entry successful.. \n\n");
+            System.out.println("\n\n Customer entry successful!");
             try {
-                Thread.sleep(5000); //Wait for 5 second
+                Thread.sleep(5000); // Wait for 5 second
             } catch (InterruptedException e) {
-                System.out.println("Error occured while waiting.");
+                System.out.println("An error occurred while waiting.");
             }
             customer.displayInfo();
-            System.out.println("\nThank you for registering");
-            System.out.println("Your account created successfully.\n");
-
-            //chose to  create a account or not!
+            System.out.println("Thank you for registering!");
+            System.out.println("Your account has been created successfully.");
+            //chose to exit or continue
             System.out.print("Do you want to add another customer? (yes/no): ");
-            response = scanner.nextLine();
-        } while (response.equalsIgnoreCase("yes"));
+            response = scanner.nextLine().toLowerCase(); 
+        } while (response.equals("yes")); 
 
         System.out.println("Thank you for using the Simple Banking System!");
         scanner.close();
